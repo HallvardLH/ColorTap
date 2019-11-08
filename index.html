@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    	<meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title>Color Tap</title>
+	    <script type="text/javascript" charset="utf-8">
+              
+            function onDeviceReady() {
+              document.removeEventListener('deviceready', onDeviceReady, false);
+              
+              // Set AdMobAds options:
+              admob.setOptions({
+                publisherId:          "ca-app-pub-3989514379219446/1773976518",  // Required
+                interstitialAdId:     "ca-app-pub-3989514379219446/3303267333",  // Optional
+                tappxIdiOS:           "/XXXXXXXXX/Pub-XXXX-iOS-IIII",            // Optional
+                tappxIdAndroid:       "/XXXXXXXXX/Pub-XXXX-Android-AAAA",        // Optional
+                tappxShare:           0                                          // Optional
+              });
+              
+              // Start showing banners (atomatic when autoShowBanner is set to true)
+              //admob.createBannerView();
+              
+              // Request interstitial (will present automatically when autoShowInterstitial is set to true)
+              //admob.requestInterstitialAd();
+            }
+            
+            document.addEventListener("deviceready", onDeviceReady, false);
+
+	    </script>
+        <link id="favicon" rel="shortcut icon" type="image/png" href="images/blue.png"/>
+        <link href="style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+		<div id="menu">
+            <div style="font-size:12vw;">COLOR TAP</div>
+            <button onclick="play(), playSound('tap')" class="big btn">PLAY</button>
+            <button onclick="display('mode'), hide('menu'), playSound('tap')" class="big btn">CHANGE SIZE</button>
+            <button onclick="display('language'), hide('menu'), playSound('tap')" class="big btn">LANGUAGE</button>
+            <p class="big" id="highscore"></p>
+            <p class="big" id="whichMode"></p>
+        </div>
+
+    	<div id="gameArea" style="display:none">
+	        <div id="color">0</div>
+	        <div id="score">0</div>
+	        <section id="squareAnchor"></section>
+	        <br />
+	        <div id="barContainer">
+				<div id="bar"></div>
+			</div>
+	        <div id="time">0</div>
+	    </div>
+
+		<div id="mode" style="display:none">
+            <p class="big">CHOOSE SIZE</p>
+            <button onclick="changeSize(4)" class="big btn">2x2</button>
+            <button onclick="changeSize(9)" class="big btn">3x3</button>
+            <button onclick="changeSize(16)" class="big btn">4x4</button>
+            <br />
+            <button onclick="hide('mode'); display('menu');" class="big btn">BACK</button>
+        </div>
+
+		<div id="language" style="display:none">
+            <p class="big">CHOOSE LANGUAGE</p>
+            <button onclick="language('German')" class="big btn">Deutsch</button>
+            <button onclick="language('English')" class="big btn">English</button>
+            <button onclick="language('Spanish')" class="big btn">Español</button>
+            <button onclick="language('French')" class="big btn">Français</button>
+            <button onclick="language('Portuguese')" class="big btn">Português</button>
+			<button onclick="language('Indonesian')" class="big btn">Bahasa Indonesia</button>
+            <button onclick="language('Arabic')" class="big btn">عربى</button>
+            <button onclick="language('Hindi')" class="big btn">हिंदी</button>
+            <button onclick="language('Russian')" class="big btn">русский</button>
+            <button onclick="language('Chinese')" class="big btn">中文</button>
+            <button onclick="language('Japanese')" class="big btn">日本語</button>
+            <button onclick="language('Korean')" class="big btn">한국어</button>
+            <br />
+            <button onclick="hide('mode'); display('menu');" class="big btn">BACK</button>
+        </div>
+
+        <div id="modal">
+          <div id="gameOver" class="gameOver">
+            <p class="big">GAME OVER!</p>
+            <p class="big" id="thisScore"></p>
+            <button onclick="play(), playSound('tap')" class="big btn">PLAY</button>
+            <button onclick="display('menu'), hide('modal'), hide('gameArea'), playSound('tap')" class="big btn">MENU</button>
+          </div>
+        </div>
+
+        <audio id="gold1"><source src="audio/gold1.mp3" type="audio/mpeg"></audio>
+        <audio id="gameOver"><source src="audio/gameOver.mp3" type="audio/mpeg"></audio>
+        <audio id="tap"><source src="audio/tap.mp3" type="audio/mpeg"></audio>
+    </body>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="main.js"></script>
+</html>
